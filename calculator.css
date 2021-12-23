@@ -1,0 +1,34 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.result{
+    border: 1px solid #aaa;
+    width: 300px;
+    overflow: hidden;
+    height: 50px;
+}
+
+.calculator{
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    grid-template-rows: repeat(15,1fr);
+    width: 300px;
+    height: 500px;
+}
+
+button.calculator_button{
+    outline: none;
+    background-color: white;
+    border: 1px solid #aaa;
+    width: 70px;
+    align-items: center;
+}
+
+button.calculator_button:hover{
+    background-color: antiquewhite;
+    transition: 0.3s ease-in-out;
+}
