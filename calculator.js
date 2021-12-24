@@ -3,6 +3,7 @@ const display = document.querySelector('.display');
 const buttons = document.querySelectorAll('.calculator_button');
 const calculator = document.querySelector('.calculator');
 const invalidInput = document.querySelector('.error');
+const reset = document.querySelector('.reset');
 var toComputeVal = "";
 
 const compute = userData =>{
@@ -11,15 +12,16 @@ const compute = userData =>{
         // calculate and display result
         case "=":
             try{
-                calc = eval(toComputeVal)
-                // display.innerText = calc;
-                localStorage.setItem('preValue', toComputeVal + '=' + calc );
-                result.innerHTML = 
-                `
-                    ${localStorage.getItem('preValue')} <span class="d-block display">= ${calc}</span>
-                `;
-                toComputeVal = '';
-                // result.textContent = toComputeVal + '=' + eval(toComputeVal);
+                if(toComputeVal.length){
+                    calc = eval(toComputeVal)
+                    // display.innerText = calc;
+                    localStorage.setItem('preValue', toComputeVal + '=' + calc );
+                    result.innerHTML = 
+                    `
+                        ${localStorage.getItem('preValue')} <span class="d-block display text-dark">= ${calc}</span>
+                    `;
+                    toComputeVal = '';
+                }
             }catch(err){
                 console.log(err.message);
                 if(invalidInput.classList.contains('d-none')){
@@ -35,13 +37,13 @@ const compute = userData =>{
                 toComputeVal = "";
                 result.innerHTML = 
                 `
-                    ${localStorage.getItem('preValue')} <span class="d-block display">= ${toComputeVal}</span>
+                    00 <span class="d-block display text-dark">00</span>
                 `;
                 console.log(result.innerText);
             }else{
                 result.innerHTML = 
                 `
-                    ${localStorage.getItem('preValue')} <span class="d-block display">0</span>
+                    00 <span class="d-block display text-dark">00</span>
                 `;
             }   
             break;
@@ -52,14 +54,14 @@ const compute = userData =>{
                 toComputeVal = toComputeVal.slice(0, -1);
                 result.innerHTML = 
                 `
-                    ${localStorage.getItem('preValue')} <span class="d-block display">= ${toComputeVal}</span>
+                    ${localStorage.getItem('preValue')} <span class="d-block display text-dark">${toComputeVal}</span>
                 `;
                 // display.innerText = toComputeVal;
                 console.log(toComputeVal);
             }else{
                 result.innerHTML = 
                     `
-                        ${localStorage.getItem('preValue')} <span class="d-block display">0</span>
+                        ${localStorage.getItem('preValue')} <span class="d-block display text-dark">00</span>
                     `;
             }            
             break;
@@ -70,7 +72,7 @@ const compute = userData =>{
             toComputeVal += userData;
             result.innerHTML = 
                 `
-                    ${localStorage.getItem('preValue')} <span class="d-block display">${toComputeVal}</span>
+                    ${localStorage.getItem('preValue')} <span class="d-block display text-dark">${toComputeVal}</span>
                 `;
             // display.innerText = toComputeVal;
             console.log(toComputeVal);
@@ -89,6 +91,14 @@ calculator.addEventListener('click', e =>{
 if(localStorage.getItem('preValue')){
     result.innerHTML = 
         `
-            ${localStorage.getItem('preValue')} <span class="d-block display">${toComputeVal}</span>
+            ${localStorage.getItem('preValue')} <span class="d-block display text-dark">00</span>
         `;
 }
+
+reset.addEventListener('click', () =>{
+    localStorage.setItem('preValue', 00);
+    result.innerHTML = 
+        `
+        ${localStorage.getItem('preValue')}<span class="d-block display text-dark">00</span>
+        `;
+})
