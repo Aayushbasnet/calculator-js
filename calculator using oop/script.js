@@ -2,14 +2,14 @@ class Calculator{
     constructor(prevOperandTextElement, currOperandTextElement){
         this.prevOperandTextElement = prevOperandTextElement;
         this.currOperandTextElement = currOperandTextElement;
-        this.clear();
+        this.clear();       // clears display and set values to default when app starts
     }
-
-    // clear output
+  
+    // clear the display and set values to default
     clear(){
-        this.prevOperand = '';
-        this.currOperand = '';
-        this.operation = undefined;
+        this.prevOperand = '';      // clearing current value
+        this.currOperand = '';      // clearing previous value
+        this.operation = undefined;     //clearing operation (eg. +, -, *, /, etc.)
 
     }
 
@@ -32,14 +32,13 @@ class Calculator{
         this.prevOperand = this.currOperand;
         this.currOperand = '';
         this.operation = operation;
-        // this.updateUi();
     }
 
     // append numbers together
     appendDigits(number){
         // avoiding multiple '.'
         if(number === '.' && this.currOperand.includes('.')) return
-        this.currOperand = this.currOperand.toString() + number.toString();
+        this.currOperand = this.currOperand.toString() + number.toString();     //appending values or number in current operand
     }
 
     // formatting the digit (eg: 123,456,789)
